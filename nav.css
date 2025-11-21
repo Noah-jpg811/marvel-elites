@@ -1,0 +1,10 @@
+/* Navigation Styling - Logo Left, Links Right */
+nav {
+  display: flex;
+  width: 914px;
+  height: 113px;
+  padding: 15px 19px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
