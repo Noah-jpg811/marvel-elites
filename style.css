@@ -1,16 +1,16 @@
+/* Global styles */
 /* load fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&display=swap');
 
-/* Global styles */
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
-  /* Page background - change this value to any color you like */
   background-color: #334443;
   margin: 0;
   min-height: 100vh;
+  color: #FAF8F1;
 }
 
 /* typography */
@@ -24,11 +24,18 @@ h1, h2, h3 {
 /*color-vars*/
 :root {
   --off-white: #FAF8F1;
-  --highlight-color: #FAEAB1;
-  --accent-color: #34656D;
-  --bg-color: #334443;;
+  --gold: #FAEAB1;
+  --light-green: #34656D;
+  --dark-green: #334443;;
 }
-/* Navigation Styling - Logo Left, Links Right */
+
+.hover {
+  transition: color 0.3s;
+  color: #FAF8F1;
+}
+
+/* Components Styling */
+
 nav {
    width: 100%;
     background: #34656D;
@@ -46,10 +53,8 @@ nav {
     content: "☰";
     font-size: 18px;
     line-height: 1;
-
 }
 
-/* Styles */
 
 /* Flex container utility */
 .flex-container {
@@ -62,3 +67,7 @@ nav {
   flex: 1 0 0;
   box-sizing: border-box;
 }
+
+/* Page Styling */
+/* Media Queries */
+@media (max-width: 768px) {
