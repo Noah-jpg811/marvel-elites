@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (firstLink) {
         setTimeout(() => firstLink.focus(), 100);
       }
+      document.body.classList.add('nav-open');
+    }
+    else {
+      document.body.classList.remove('nav-open');
     }
   }
 
@@ -42,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navToggle.setAttribute("aria-expanded", "false");
     navList.setAttribute("aria-expanded", "false");
     navToggle.focus();
+    document.body.classList.remove('nav-open');
   }
 
   // Click event
@@ -73,11 +78,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Close when a navigation link is clicked (useful for mobile)
+  navList.addEventListener('click', function (e) {
+    const target = e.target;
+    if (target && target.tagName === 'A') {
+      // Close nav if a link was clicked and viewport is small
+      if (window.innerWidth <= 768) {
+        closeNav();
+      }
+    }
+  });
+
   // Handle window resize
   window.addEventListener("resize", function () {
     if (window.innerWidth > 768) {
       navToggle.setAttribute("aria-expanded", "false");
       navList.setAttribute("aria-expanded", "false");
+      document.body.classList.remove('nav-open');
     }
   });
 

@@ -5,7 +5,7 @@
 body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 400;
   font-style: normal;
   background-color: #334443;
   margin: 0;
@@ -13,8 +13,28 @@ body {
   color: #FAF8F1;
 }
 
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--off-white);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+img,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Luckiest Guy", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -26,7 +46,8 @@ h1, h2, h3 {
   --off-white: #FAF8F1;
   --gold: #FAEAB1;
   --light-green: #34656D;
-  --dark-green: #334443;;
+  --dark-green: #334443;
+  --header-height: 113px;
 }
 
 .hover {
@@ -37,28 +58,179 @@ h1, h2, h3 {
 /* Components Styling */
 
 nav {
-   width: 100%;
-    background: #34656D;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 4px;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  width: 100%;
+  height: var(--header-height);
+  background: #34656D;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* vertically center content inside the nav */
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
+
+/* Logo link image styling */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  /* use inherited text color */
+}
+
+.nav-logo img,
+.nav-logo .nav-logo-img {
+  display: block;
+  max-height: 80px;
+  /* keeps logo inside a 113px header comfortably */
+  height: auto;
+  width: auto;
+}
+
+/* Flexible right container: toggle button and links */
+.flex-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Utility: hide elements visually but keep accessible to screen readers */
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Accessible focus state for keyboard users */
+.nav-logo:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Optional: small viewport adjustments */
+@media (max-width: 480px) {
+
+  .nav-logo img,
+  .nav-logo .nav-logo-img {
+    max-height: 56px;
+  }
+}
+
 /* Hamburger Icon */
 .nav-toggle::before {
-    content: "☰";
-    font-size: 18px;
-    line-height: 1;
+  content: "☰";
+  font-size: 18px;
+  line-height: 1;
 }
+
+.nav-toggle[aria-expanded="true"]::before {
+  content: "✕";
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header layout - fixed top bar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+}
+
+/* Remove nav margin when inside the fixed header */
+header nav {
+  margin: 0;
+}
+
+/* Push body content below the fixed header */
+body {
+  padding-top: var(--header-height);
+}
+
+/* Basic nav list layout and behavior */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav a:not(.nav-logo) {
+  color: var(--off-white);
+  padding: 6px 10px;
+  display: inline-block;
+}
+
+/* Mobile layout: toggle button visible, list hidden until open */
+.nav-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--off-white);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide list by default on mobile */
+  nav ul {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    padding: 8px 0;
+    gap: 0;
+    background: var(--light-green);
+  }
+
+  /* Show when aria-expanded is true */
+  nav ul[aria-expanded="true"] {
+    display: flex;
+  }
+
+  nav a:not(.nav-logo) {
+    padding: 12px 20px;
+  }
+}
+
 
 
 /* Flex container utility */
-.flex-container {
+.About-container {
   display: flex;
+  max-width: 580px;
   height: 650px;
   padding: 37px 15px;
   flex-direction: column;
@@ -71,3 +243,18 @@ nav {
 /* Page Styling */
 /* Media Queries */
 @media (max-width: 768px) {
+
+  /* mobile layout adjustments */
+  header nav {
+    padding: 0 12px;
+  }
+
+  header {
+    height: 113px;
+  }
+
+  .nav-logo img,
+  .nav-logo .nav-logo-img {
+    max-height: 56px;
+  }
+}
