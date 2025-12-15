@@ -41,6 +41,16 @@ h3 {
   color: #FAEAB1;
 }
 
+h1 {
+  font-size: 72px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+h2 {
+  text-decoration: underline;
+}
+
 /*color-vars*/
 :root {
   --off-white: #FAF8F1;
@@ -55,7 +65,7 @@ h3 {
   color: #FAF8F1;
 }
 
-/* Components Styling */
+/* navigation */
 
 nav {
   width: 100%;
@@ -67,35 +77,69 @@ nav {
   position: relative;
   display: flex;
   align-items: center;
-  /* vertically center content inside the nav */
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-/* Logo link image styling */
 .nav-logo {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
   color: inherit;
-  /* use inherited text color */
 }
 
 .nav-logo img,
 .nav-logo .nav-logo-img {
   display: block;
   max-height: 80px;
-  /* keeps logo inside a 113px header comfortably */
   height: auto;
   width: auto;
 }
 
-/* Flexible right container: toggle button and links */
 .flex-right {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 40px;
+}
+
+/* button styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--dark-green);
+  height: 55px;
+  width: 95%;
+  text-decoration: none;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--off-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.32);
+  opacity: 0.98;
+}
+
+.btn:focus {
+  outline: 3px solid rgba(250, 234, 177, 0.18);
+  outline-offset: 3px;
+}
+
+.btn-small {
+  padding: 6px 10px;
+  font-size: 25px;
+  border-radius: 25px;
 }
 
 /* Utility: hide elements visually but keep accessible to screen readers */
@@ -179,9 +223,16 @@ nav li {
 }
 
 nav a:not(.nav-logo) {
-  color: var(--off-white);
+  color: var(--gold);
   padding: 6px 10px;
   display: inline-block;
+  transition: color 0.12s ease;
+}
+
+nav a:not(.nav-logo):hover,
+nav a:not(.nav-logo):focus {
+  color: var(--off-white);
+  text-decoration: underline;
 }
 
 /* Mobile layout: toggle button visible, list hidden until open */
@@ -201,7 +252,6 @@ nav a:not(.nav-logo) {
     justify-content: center;
   }
 
-  /* Hide list by default on mobile */
   nav ul {
     display: none;
     position: absolute;
@@ -228,17 +278,187 @@ nav a:not(.nav-logo) {
 
 
 /* Flex container utility */
-.About-container {
+.about-container {
   display: flex;
-  max-width: 580px;
-  height: 650px;
-  padding: 37px 15px;
+  max-width: 800px;
+  height: auto;
+  padding: 37px 30px;
   flex-direction: column;
   align-items: center;
-  gap: 29px;
+  gap: 20px;
   flex: 1 0 0;
   box-sizing: border-box;
 }
+
+.about-container > img {
+  width: 800px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.character-description {
+  display: flex;
+  max-width: 1240px;
+  height: auto;
+  padding: 37px 30px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1 0 0;
+  box-sizing: border-box;
+}
+
+.movie-description {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--light-green);
+  gap: 30px;
+  max-width: 1240px;
+  margin: 30px auto;
+  padding: 0 25px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.movie-description .movie-reviews-title {
+  width: 100%;
+  text-align: center;
+  margin: 18px 0;
+  font-size: 28px;
+}
+
+/* ensure movie-reviews container exists and uses the transparent card layout */
+.movie-reviews {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 24px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.review-card {
+  flex: 1 1 0;
+  min-width: 240px;
+  padding: 18px;
+  background: transparent; 
+  border: none; 
+  color: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-card h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.review-card p {
+  margin: 0;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+
+/* Three-column flex row container */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1240px;
+  margin: 200px auto;
+  padding: 0 25px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.character-cards {
+  flex: 1 1 0;
+  min-width: 260px;
+  min-height: 0;
+  background: var(--light-green);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  color: var(--off-white);
+}
+
+/* Make character card images uniform height while staying responsive */
+.character-cards img {
+  display: block;
+  width: 300px;
+  height: 400px;
+  max-width: 100%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+}
+
+.site-footer {
+  width: 100%;
+  background: var(--light-green);
+  padding: 18px 0;
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .character-cards img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 12px;
+  }
+
+  .container .character-cards {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 480px) {
+  .container {
+    margin: 40px auto;
+  }
+}
+
+  .character-description iframe {
+    width: 100%;
+    max-width: 1200px;
+    height: 720px;
+    display: block;
+    margin: 20px auto;
+    border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .character-description iframe {
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+    }
+  }
 
 /* Page Styling */
 /* Media Queries */
@@ -256,5 +476,49 @@ nav a:not(.nav-logo) {
   .nav-logo img,
   .nav-logo .nav-logo-img {
     max-height: 56px;
+  }
+
+  /* About-container: make full-width and reduce padding on small screens */
+  .About-container {
+    max-width: 100%;
+    padding: 16px;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .About-container img {
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container > img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-reviews {
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+
+  .review-card {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 12px 8px;
+    font-size: 14px;
   }
 }
